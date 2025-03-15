@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 2rem; }
+        header { text-align: center; background-color: #0078d4; color: white; padding: 1rem; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        table, th, td { border: 1px solid #ddd; }
+        th, td { padding: 1rem; text-align: left; }
+        th { background-color: #0078d4; color: white; }
+        button { background-color: #0078d4; color: white; border: none; padding: 0.5rem 1rem; cursor: pointer; }
+        button:hover { background-color: #005a9e; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Patient Dashboard</h1>
+        <button onclick="logout()">Logout</button>
+    </header>
+    <main>
+        <h2>Appointment History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Doctor</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody id="historyTable">
+                <!-- History data dynamically populated -->
+            </tbody>
+        </table>
+    </main>
+
+    <script>
+        // Check user role and redirect if not authorized
+        const token = localStorage.getItem("token");
+        const role = localStorage.getItem("role");
+
+        if (!token || role !== "patient") {
+            alert("Unauthorized access. Redirecting to login.");
+            window.location.href = "login.html";
+        }
+
+        // Populate appointment history
+        const historyTable = document.getElementById("historyTable");
+        fetch("http://localhost:3000/patient/history", {
+            method: "GET",
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(entry => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${entry.date}</td>
+                    <td>${entry.doctor}</td>
+                    <td>${entry.notes}</td>
+                `;
+                historyTable.appendChild(row);
+            });
+        })
+        .catch(err => console.error("Failed to fetch history:", err));
+
+        // Logout functionality
+        function logout() {
+            localStorage.removeItem("token");
+            localStorage.removeItem("role");
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="Reg.css">
+</head>
+
+<body>
+
+    <div class="background-container">
+        <div class="background-image" style="background-image: url('EIS 5.jpg');" id="img1"></div>
+        <div class="background-image" style="background-image: url('EIS 6.jpg');" id="img2"></div>
+        <div class="background-image" style="background-image: url('EIS 7.jpg');" id="img3"></div>
+        <div class="background-image" style="background-image: url('EIS 8.jpg');" id="img4"></div>
+        <div class="background-image" style="background-image: url('EIS 10.jpg');" id="img5"></div>
+        <div class="background-image" style="background-image: url('6EIS.jpg');" id="img6"></div>
+    </div>
+    
+    <div class="heading"> 
+        <h2>Welcome! Please fill the form below to register.</h2> 
+    </div>     
+        
+    <div class="form-container">
+        
+        <form id="registrationForm">
+            <select id="role" required>
+                <option value="" disabled selected hidden>Select Role</option>
+                <option value="patient">Patient</option>
+                <option value="provider">Healthcare Provider</option>
+            </select>
+            
+
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="text" id="username" placeholder="Username or Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            
+            <!-- Patient-Specific Fields -->
+            <div id="patient-fields">
+                <input type="tel" id="phone" placeholder="Phone Number">
+                <input type="text" id="address" placeholder="Home Address">
+                <input type="text" id="hospitalId" placeholder="Hospital ID Number">
+            </div>
+
+            <button type="submit">Register</button>
+            <button id="backButton" onclick="location.href='SITE3.html'">Home</button>
+        </form>
+        
+    </div>
+
+    <script src="Reg.js"></script>
+
+</body>
+
+</html>

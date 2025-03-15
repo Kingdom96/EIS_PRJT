@@ -1,0 +1,158 @@
+/* Ensure images fit within their containers */
+
+/* Container styling (if needed) */
+.image, .large-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px; /* Rounded corners */
+}
+
+/* Images within containers */
+.image img, .large-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the entire container without distortion */
+}
+
+.image img, .images img {
+    width: 100%;
+    height: 200%;
+    object-fit: cover; /* Ensures the image covers the entire container without distortion */
+    border-radius: 20;
+}
+
+/* Example for adjusting the height */
+.large-image {
+    grid-area: large-image;
+    height: 550px; /* As per your requirement */
+}
+
+.image {
+    height: calc((550px - 2 * 20px) / 3); /* Adjust height to align images 1, 2, 3 with image 4's height */
+}
+
+/* Body */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Header Section */
+.header {
+    background-color: #0047ab; /* Blue Background */
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    border-radius: 8px 8px 0 0; /* Rounded corners for header */
+}
+.nav button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: none;
+    background: white;
+    color: #0047ab;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none; /* Ensure text is not underlined */
+    border-radius: 4px; /* Rounded corners for buttons */
+}
+.nav button:hover {
+    background: lightgray;
+}
+
+/* Content Section */
+.content {
+    background: url('EIS 10.jpg') no-repeat center center/cover;
+    padding: 20px;
+    display: grid;
+    grid-template-areas: 
+        "welcome images"
+        "large-image images"
+        "contact contact";
+    grid-template-columns: 3fr 1fr; /* Left: Welcome/large-image; Right: Images */
+    grid-gap: 20px; /* Consistent spacing */
+    align-items: start;
+}
+.welcome-note {
+    grid-area: welcome;
+    background: white;
+    padding: 20px;
+    border: 1px solid gray;
+    border-radius: 20px; /* Rounded corners */
+    height: 550px; /* Increased height to be above the center of image 2 */
+}
+.images {
+    grid-area: images;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure consistent vertical spacing */
+    gap: 20px; /* Gap between images 1, 2, and 3 */
+    border-radius: 8px; /* Rounded corners */
+    height: 100%;
+    width: 100%;
+}
+.contact-section {
+    grid-area: contact;
+    background: none; /* Light Blue Background */
+    padding: 20px;
+    text-align: center;
+    border-radius: 30px; /* Rounded corners */
+}
+
+.connect {
+    background: none;
+    font-weight: bold;
+    border-radius: 10px; /* Rounded corners */
+}
+.connect button{
+    background: rgba(245, 245, 245, 0.342);
+    color: #2ea342;
+    font-weight: bold;
+    border: none;
+    height: 40px;
+    width: 300px;
+    text-decoration: none; /* Ensure text is not underlined */
+    border-radius: 100px; /* Rounded corners */
+}
+.social-links button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    background: white;
+    color: #0047ab;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px; /* Rounded corners */
+}
+.social-links button:hover {
+    background: lightgray;
+}
+
+/* Footer Section */
+.footer {
+    color: rgb(24, 1, 1);
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 0 0 8px 8px; /* Rounded corners for footer */
+    animation: footer-animation 15s infinite;
+}
+
+@keyframes footer-animation {
+    0% {
+        background-color: rgba(162, 189, 239, 0.445);
+    }
+    20% {
+        background-color: rgba(198, 250, 250, 0.575);
+    }
+    40% {
+        background-color: rgba(202, 246, 119, 0.507);
+    }
+    60% {
+        background-color: rgba(198, 250, 250, 0.575);
+    }
+    80% {
+        background-color: rgba(202, 246, 119, 0.507);
+    }
+    100% {
+        background-color: rgba(162, 189, 239, 0.445);
+    }
+}
